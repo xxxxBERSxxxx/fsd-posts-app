@@ -4,6 +4,29 @@
   box-sizing: border-box;
 }
 
+/* Значения по умолчанию (светлая тема) */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --header-bg: #333333;
+  --header-text: #ffffff;
+  --card-bg: #f9f9f9;
+  --card-border: #ccc;
+}
+
+/* Тёмная тема – переопределяем переменные */
+.dark-theme {
+  --bg-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --header-bg: #222222;
+  --header-text: #ffffff;
+  --card-bg: #2d2d2d;
+  --card-border: #444444;
+}
+
 body {
   font-family: sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
