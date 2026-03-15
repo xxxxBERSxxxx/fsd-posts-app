@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styles from './Header.module.css';
 import ThemeSwitcher from '../../features/ThemeSwitcher/ui/ThemeSwitcher';
 import Button from '../../shared/ui/Button/Button';
-import Modal from '../../shared/ui/Modal/Modal';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from '../../shared/ui/Modal';
+
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,15 +20,15 @@ const Header = () => {
         </div>
       </header>
 
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        title="О проекте"
-      >
-        <p>Этот блог создан в рамках учебного проекта.</p>
-        <p>Используемые технологии: React, TypeScript, CSS Modules.</p>
-        <p>Реализовано переключение темы и модальное окно через портал.</p>
-      </Modal>
+<Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+  <ModalHeader>О проекте</ModalHeader>
+  <ModalBody>
+    <p>Этот блог создан в рамках учебного проекта.</p>
+    <p>Используемые технологии: React, TypeScript, CSS Modules.</p>
+    <p>Реализовано переключение темы и модальное окно через портал.</p>
+  </ModalBody>
+  <ModalFooter />
+</Modal>
     </>
   );
 };
