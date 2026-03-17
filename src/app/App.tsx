@@ -1,11 +1,14 @@
+import { ThemeProvider } from '../shared/lib/theme/ThemeContext';
 import MainLayout from '../shared/layouts/MainLayout';
 import PostList from '../widgets/PostList/PostList';
 
-function App(){
+function App() {
   return (
-    <MainLayout>
-      <PostList />
-    </MainLayout>
+    <ThemeProvider>
+      <MainLayout>
+        <PostList />
+      </MainLayout>
+    </ThemeProvider>
   );
 }
 
