@@ -1,13 +1,10 @@
 import { ThemeProvider } from '../shared/lib/theme/ThemeContext';
-import MainLayout from '../shared/layouts/MainLayout';
-import PostList from '../widgets/PostList/PostList';
+import { AppRouter } from './providers/router';
 
 function App() {
   return (
     <ThemeProvider>
-      <MainLayout>
-        <PostList />
-      </MainLayout>
+     <AppRouter />
     </ThemeProvider>
   );
 }
