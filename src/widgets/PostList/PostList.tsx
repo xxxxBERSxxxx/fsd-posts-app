@@ -2,28 +2,26 @@ import React, { useState, useMemo } from 'react';
 import PostCard from '../../entities/post/ui/PostCard';
 import PostLengthFilter from '../../features/PostLengthFilter/ui/PostLengthFilter';
 import { filterByLength } from '../../features/PostLengthFilter/lib/filterByLength';
-import withLoading from '../../shared/lib/theme/hoc/withLoading';
 import styles from './PostList.module.css';
-import { usePosts } from '../../features/PostList/model/hooks/usePosts';
+import { useGetPostsQuery } from '../../entities/post/api/postsApi';
+import { useSelector } from 'react-redux';
+import { selectAllPosts } from '../../entities/post/model/slice/postSlice';
 
 interface PostListProps {
   userId?: number;
 }
 
 const PostList: React.FC<PostListProps> = ({ userId }) => {
-  const { posts, isLoading, error } = usePosts({ userId });
+ 
+  const { isLoading, error } = useGetPostsQuery({ userId });
+  
+  const posts = useSelector(selectAllPosts);
   const [minLength, setMinLength] = useState(0);
 
- 
-  const filteredPosts = useMemo(() => {
-    console.log('Фильтрация постов...'); 
-    return filterByLength(posts, minLength);
-  }, [posts, minLength]);
+  const filteredPosts = useMemo(() => filterByLength(posts, minLength), [posts, minLength]);
 
   if (isLoading) return <div>Загрузка...</div>;
-  if (error) return <div>Ошибка: {error}</div>;
-
-
+  if (error) return <div>Ошибка: {JSON.stringify(error)}</div>;
 
   return (
     <div className={styles.list}>
@@ -36,7 +34,4 @@ const PostList: React.FC<PostListProps> = ({ userId }) => {
   );
 };
 
-export default withLoading(PostList);
-
-
-
+export default PostList;

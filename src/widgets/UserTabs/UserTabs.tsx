@@ -18,7 +18,7 @@ className={({isActive}) => (isActive ? styles.active : '')}
 to={`/users/${userId}/albums`}
 className={({isActive}) =>(isActive ? styles.active : '')}
 >
-Альомы
+Альбомы
 </NavLink>
 <NavLink
 to={`/users/${userId}/todos`}

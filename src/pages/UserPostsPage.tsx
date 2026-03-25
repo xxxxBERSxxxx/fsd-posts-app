@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import UserTabs from "../widgets/UserTabs/UserTabs";
+import UserTabs from '../widgets/UserTabs/UserTabs';
 import PostList from "../widgets/PostList/PostList";
 
 const UserPostsPage = () =>{

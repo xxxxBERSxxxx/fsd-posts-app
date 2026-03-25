@@ -1,11 +1,15 @@
+import { Provider } from 'react-redux';
+import { store } from './providers/store/store';
 import { ThemeProvider } from '../shared/lib/theme/ThemeContext';
 import { AppRouter } from './providers/router';
 
 function App() {
   return (
-    <ThemeProvider>
-     <AppRouter />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider>
+        <AppRouter />
+      </ThemeProvider>
+    </Provider>
   );
 }
 
