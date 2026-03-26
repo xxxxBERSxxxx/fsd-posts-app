@@ -1,11 +1,15 @@
-import MainLayout from '../shared/layouts/MainLayout';
-import PostList from '../widgets/PostList/PostList';
+import { Provider } from 'react-redux';
+import { store } from './providers/store/store';
+import { ThemeProvider } from '../shared/lib/theme/ThemeContext';
+import { AppRouter } from './providers/router';
 
-function App(){
+function App() {
   return (
-    <MainLayout>
-      <PostList />
-    </MainLayout>
+    <Provider store={store}>
+      <ThemeProvider>
+        <AppRouter />
+      </ThemeProvider>
+    </Provider>
   );
 }
 
