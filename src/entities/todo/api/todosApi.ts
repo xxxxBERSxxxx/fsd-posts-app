@@ -1,11 +1,5 @@
 import { baseApi } from '../../../app/providers/store/baseApi';
-
-export interface Todo {
-  id: number;
-  userId: number;
-  title: string;
-  completed: boolean;
-}
+import { Todo } from '../model/types';
 
 export const todosApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

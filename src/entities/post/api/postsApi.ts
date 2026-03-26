@@ -1,11 +1,5 @@
 import { baseApi } from '../../../app/providers/store/baseApi';
-
-export interface Post {
-  id: number;
-  title: string;
-  body: string;
-  userId: number;
-}
+import { Post } from '../model/types';
 
 export const postsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -14,7 +8,6 @@ export const postsApi = baseApi.injectEndpoints({
         url: 'posts',
         params: userId ? { userId } : undefined,
       }),
-     
       providesTags: (result, error, { userId }) =>
         result
           ? [
@@ -34,7 +27,7 @@ export const postsApi = baseApi.injectEndpoints({
         method: 'POST',
         body: newPost,
       }),
-      invalidatesTags: [{ type: 'Post', id: 'LIST' }],  
+      invalidatesTags: [{ type: 'Post', id: 'LIST' }],
     }),
     updatePost: builder.mutation<Post, Partial<Post> & Pick<Post, 'id'>>({
       query: ({ id, ...patch }) => ({
@@ -54,7 +47,6 @@ export const postsApi = baseApi.injectEndpoints({
   }),
   overrideExisting: false,
 });
-
 
 export const {
   useGetPostsQuery,

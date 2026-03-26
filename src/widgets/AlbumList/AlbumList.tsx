@@ -1,5 +1,6 @@
 import React from 'react';
-import { useGetAlbumsByUserQuery } from '../../entities/album/api/albumsApi'; 
+import { useGetAlbumsByUserQuery } from '../../entities/album/api/albumsApi';
+import { ItemList } from '../../shared/ui/ItemList/ItemList';
 
 interface AlbumListProps {
   userId: number;
@@ -14,13 +15,14 @@ const AlbumList: React.FC<AlbumListProps> = ({ userId }) => {
   return (
     <div>
       <h3>Альбомы пользователя {userId}</h3>
-      <ul>
-        {albums.map(album => (
-          <li key={album.id}>
-            <a href={`/albums/${album.id}/photos`}>{album.title}</a>
-          </li>
-        ))}
-      </ul>
+      <ItemList
+        items={albums}
+        keyExtractor={(album) => album.id}
+        renderItem={(album) => (
+          <a href={`/albums/${album.id}/photos`}>{album.title}</a>
+        )}
+        emptyMessage="Нет альбомов"
+      />
     </div>
   );
 };

@@ -1,12 +1,5 @@
 import { baseApi } from '../../../app/providers/store/baseApi';
-
-export interface Comment {
-  id: number;
-  postId: number;
-  name: string;
-  email: string;
-  body: string;
-}
+import { Comment } from '../model/types';
 
 export const commentsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -20,7 +13,6 @@ export const commentsApi = baseApi.injectEndpoints({
             ]
           : [{ type: 'Comment', id: `POST_${postId}` }],
     }),
-  
   }),
   overrideExisting: false,
 });

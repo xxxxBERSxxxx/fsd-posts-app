@@ -1,12 +1,5 @@
 import { baseApi } from '../../../app/providers/store/baseApi';
-
-export interface Photo {
-  id: number;
-  albumId: number;
-  title: string;
-  url: string;
-  thumbnailUrl: string;
-}
+import { Photo } from '../model/types';
 
 export const photosApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

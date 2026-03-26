@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGetPhotosByAlbumQuery } from '../../entities/photo/api/photosApi';
+import { ItemList } from '../../shared/ui/ItemList/ItemList';
 
 interface PhotoListProps {
   albumId: number;
@@ -15,12 +16,17 @@ const PhotoList: React.FC<PhotoListProps> = ({ albumId }) => {
     <div>
       <h3>Фотографии альбома</h3>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-        {photos.map(photo => (
-          <div key={photo.id}>
-            <img src={photo.thumbnailUrl} alt={photo.title} />
-            <p>{photo.title}</p>
-          </div>
-        ))}
+        <ItemList
+          items={photos}
+          keyExtractor={(photo) => photo.id}
+          renderItem={(photo) => (
+            <div>
+              <img src={photo.thumbnailUrl} alt={photo.title} />
+              <p>{photo.title}</p>
+            </div>
+          )}
+          emptyMessage="Нет фотографий"
+        />
       </div>
     </div>
   );

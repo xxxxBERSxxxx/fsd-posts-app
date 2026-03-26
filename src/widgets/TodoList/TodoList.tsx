@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGetTodosByUserQuery } from '../../entities/todo/api/todosApi';
+import { ItemList } from '../../shared/ui/ItemList/ItemList';
 
 interface TodoListProps {
   userId: number;
@@ -14,13 +15,16 @@ const TodoList: React.FC<TodoListProps> = ({ userId }) => {
   return (
     <div>
       <h3>Задачи пользователя {userId}</h3>
-      <ul>
-        {todos.map(todo => (
-          <li key={todo.id} style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+      <ItemList
+        items={todos}
+        keyExtractor={(todo) => todo.id}
+        renderItem={(todo) => (
+          <li style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
             {todo.title}
           </li>
-        ))}
-      </ul>
+        )}
+        emptyMessage="Нет задач"
+      />
     </div>
   );
 };

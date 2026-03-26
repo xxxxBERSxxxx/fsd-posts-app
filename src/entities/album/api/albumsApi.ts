@@ -1,10 +1,5 @@
 import { baseApi } from '../../../app/providers/store/baseApi';
-
-export interface Album {
-  id: number;
-  userId: number;
-  title: string;
-}
+import { Album } from '../model/types';
 
 export const albumsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

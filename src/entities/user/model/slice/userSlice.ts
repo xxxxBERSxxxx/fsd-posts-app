@@ -1,14 +1,7 @@
-import { createSlice, createEntityAdapter, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import { postsApi } from '../../../post/api/postsApi';
+import { User } from '../types';
 import { RootState } from '../../../../app/providers/store/store';
-
-export interface User {
-  id: number;
-  name?: string;
-  username?: string;
-  email?: string;
- 
-}
 
 const usersAdapter = createEntityAdapter<User>({
   selectId: (user) => user.id,
@@ -25,11 +18,10 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addMatcher(postsApi.endpoints.getPosts.matchFulfilled, (state, action) => {
-      
       const usersMap = new Map<number, User>();
       action.payload.forEach((post) => {
         if (!usersMap.has(post.userId)) {
-          usersMap.set(post.userId, { id: post.userId });
+          usersMap.set(post.userId, { id: post.userId } as User);
         }
       });
       const users = Array.from(usersMap.values());

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import styles from './PostLengthFilter.module.css'; // создадим простой CSS
+import styles from './PostLengthFilter.module.css'; 
 
 interface PostLengthFilterProps {
   minLength: number;
